@@ -22,8 +22,9 @@ public class NQueensProblem {
 
     static void nQueens(char board[][], int row) {
         if (row == board.length) {
-            System.out.println("-----------------mat--------------");
-            printArray(board);
+            
+            //printArray(board);
+            count++;
             return;
         }
         for (int j = 0; j < board.length; j++) {
@@ -36,6 +37,7 @@ public class NQueensProblem {
     }
 
     static void printArray(char arr[][]) {
+        System.out.println("-----------------mat--------------");
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 System.out.print(arr[i][j] + " ");
@@ -44,8 +46,10 @@ public class NQueensProblem {
         }
     }
 
+    static int count = 0;
+
     public static void main(String[] args) {
-        int n = 4;
+        int n = 5;
         char board[][] = new char[n][n];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -53,5 +57,6 @@ public class NQueensProblem {
             }
         }
         nQueens(board, 0);
+        System.out.println("Total possible solution to put queens in "+n+"X"+n+" matrix is "+count);
     }
 }
