@@ -22,8 +22,8 @@ public class NQueensProblem {
 
     static void nQueens(char board[][], int row) {
         if (row == board.length) {
-            
-            //printArray(board);
+
+            printArray(board);
             count++;
             return;
         }
@@ -36,8 +36,28 @@ public class NQueensProblem {
         }
     }
 
+    static boolean nQueensPrintOnlyOneSolution(char board[][], int row) {
+        if (row == board.length) {
+
+            //printArray(board);
+            count++;
+            return true;
+        }
+        for (int j = 0; j < board.length; j++) {
+            if (isSafe(board, row, j)) {
+                board[row][j] = 'Q';
+                if (nQueensPrintOnlyOneSolution(board, row+1)) {
+                    nQueensPrintOnlyOneSolution(board, row + 1);
+                    return true;
+                }
+                board[row][j] = 'X';
+            }
+        }
+        return false;
+    }
+
     static void printArray(char arr[][]) {
-        System.out.println("-----------------mat--------------");
+        System.out.println("-------------Possible solutions--------------");
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 System.out.print(arr[i][j] + " ");
@@ -49,14 +69,20 @@ public class NQueensProblem {
     static int count = 0;
 
     public static void main(String[] args) {
-        int n = 5;
+        int n = 3;
         char board[][] = new char[n][n];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 board[i][j] = 'X';
             }
         }
-        nQueens(board, 0);
-        System.out.println("Total possible solution to put queens in "+n+"X"+n+" matrix is "+count);
+         if(nQueensPrintOnlyOneSolution(board, 0)){
+            System.out.println("Solution exist");
+            printArray(board);
+         }else{
+            System.out.println("Solution does not exist");
+         }
+
+        System.out.println("Total possible solution to put queens in " + n + "X" + n + " matrix is " + count);
     }
 }
