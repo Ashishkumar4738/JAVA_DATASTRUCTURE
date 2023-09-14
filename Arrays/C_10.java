@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class C_10 {
     public static void printArray(int arr[]){

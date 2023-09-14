@@ -1,3 +1,4 @@
+
 //find subarray 
 public class C_6 {
 
